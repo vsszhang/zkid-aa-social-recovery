@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import { UserOperationMiddlewareFn } from "../../types";
-import { OpToJSON } from "../../utils";
+import { ERC4337 } from "../../constants";
+import { POLICY_ID, DUMMY_PM_SIG } from "../../constants/alchemy_pm";
 
 interface VerifyingPaymasterResult {
   paymasterAndData: string;
@@ -18,10 +19,18 @@ export const verifyingPaymaster =
     ).mul(3);
 
     const provider = new ethers.providers.JsonRpcProvider(paymasterRpc);
-    const pm = (await provider.send("pm_sponsorUserOperation", [
-      OpToJSON(ctx.op),
-      ctx.entryPoint,
-      context,
+    const pm = (await provider.send("alchemy_requestGasAndPaymasterAndData", [
+      {
+        policyId: POLICY_ID,
+        entryPoint: ERC4337.EntryPoint,
+        dummySignature: DUMMY_PM_SIG,
+        userOperation: {
+          sender: ctx.op.sender,
+          nonce: ethers.BigNumber.from(ctx.op.nonce).toHexString(),
+          initCode: ctx.op.initCode,
+          callData: ctx.op.callData,
+        },
+      },
     ])) as VerifyingPaymasterResult;
 
     ctx.op.paymasterAndData = pm.paymasterAndData;

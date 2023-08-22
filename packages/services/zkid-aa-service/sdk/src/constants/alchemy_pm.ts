@@ -1,0 +1,3 @@
+export const POLICY_ID = "d96b20a8-825c-4fcc-a24e-f5bdc59b11d9";
+export const DUMMY_PM_SIG =
+  "0xe8fe34b166b64d118dccf44c7198648127bf8a76a48a042862321af6058026d276ca6abb4ed4b60ea265d1e57e33840d7466de75e13f072bbd3b7e64387eebfe1b";
