@@ -84,7 +84,7 @@ module.exports = {
       },
     },
     gnosis: {
-      url: 'https://rpc.gnosischain.com/',
+      url: "https://rpc.gnosischain.com/",
       /* This config is taken from <https://docs.gnosischain.com/developers/smart-contracts/hardhat>,
       but [it seems](https://t.me/gnosischain/167469) next line would work only for the testnet.
       Removing it unblocks `yarn deploy`. */
@@ -280,7 +280,7 @@ module.exports = {
   solidity: {
     compilers: [
       {
-        version: "0.8.4",
+        version: "0.8.17",
         settings: {
           optimizer: {
             enabled: true,
