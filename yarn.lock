@@ -3587,12 +3587,12 @@
   version "1.0.0"
   resolved "file:packages/hardhat"
   dependencies:
-    "@account-abstraction/contracts" "^0.6.0"
     "@nomicfoundation/hardhat-chai-matchers" "^1.0.3"
     "@nomicfoundation/hardhat-network-helpers" "^1.0.0"
     "@nomicfoundation/hardhat-toolbox" "^1.0.2"
     "@nomiclabs/hardhat-ethers" "npm:hardhat-deploy-ethers"
     "@nomiclabs/hardhat-etherscan" "^3.1.5"
+    "@openzeppelin/contracts" "^4.9.3"
     "@tenderly/hardhat-tenderly" "^1.0.10"
     "@typechain/ethers-v5" "^10.1.0"
     "@typechain/hardhat" "^6.1.2"
