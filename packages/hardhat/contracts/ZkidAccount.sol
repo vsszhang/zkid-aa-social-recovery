@@ -131,8 +131,9 @@ contract ZkidAccount is SimpleAccount {
             judgeProposalRecovery(proposalNum, guardians),
             "guardians disaggree your recovery :("
         );
+        address oldOwner = owner;
         owner = newOwner;
-        emit ChangeOwner(owner, newOwner);
+        emit ChangeOwner(oldOwner, newOwner);
 
         // reset social recovery status
         reset(proposalNum, guardians);
