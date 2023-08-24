@@ -22,8 +22,8 @@ contract ZkidAccount is SimpleAccount {
     address public VERIFIER1;
     address public VERIFIER2;
 
-    // proposal num => guardin => bool (is guardin or not)
-    mapping(uint256 => mapping(address => bool)) public isGuardin;
+    // proposal num => guardian => bool (is guardian or not)
+    mapping(uint256 => mapping(address => bool)) public isGuardian;
 
     // proposal num => guardian => verifier => uint8 (0 is false, 1 is true)
     mapping(uint256 => mapping(address => mapping(address => uint8)))
@@ -99,8 +99,8 @@ contract ZkidAccount is SimpleAccount {
             isQualified[proposalNum][guardian][msg.sender] = 0;
         }
 
-        // register curreny propsoal guardin
-        isGuardin[proposalNum][guardian] = true;
+        // register curreny propsoal guardian
+        isGuardian[proposalNum][guardian] = true;
     }
 
     // step2-2: guardian submit recovery proposal
@@ -109,7 +109,7 @@ contract ZkidAccount is SimpleAccount {
         bool _aggreeOrNot
     ) public onlyQualifiedGuardian(proposalNum) {
         require(
-            isGuardin[proposalNum][msg.sender] == true,
+            isGuardian[proposalNum][msg.sender] == true,
             "u are not gardian"
         );
         if (_aggreeOrNot) {
@@ -162,7 +162,7 @@ contract ZkidAccount is SimpleAccount {
     /// @param guardians address array of guardians
     function reset(uint256 proposalNum, address[] memory guardians) internal {
         for (uint i = 0; i < guardians.length; i++) {
-            delete isGuardin[proposalNum][guardians[i]];
+            delete isGuardian[proposalNum][guardians[i]];
 
             delete isQualified[proposalNum][guardians[i]][VERIFIER0];
             delete isQualified[proposalNum][guardians[i]][VERIFIER1];
